@@ -747,3 +747,62 @@ body {
         padding: 2rem 0;
     }
 }
+
+/* Carousel styles for hero section */
+.carousel {
+    position: relative;
+    max-width: 1000px;
+    margin: 2rem auto 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.12);
+}
+.carousel-track-container {
+    overflow: hidden;
+}
+.carousel-track {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.45s cubic-bezier(.22,.9,.35,1);
+    will-change: transform;
+}
+.carousel-slide {
+    min-width: 100%;
+    flex: 0 0 100%;
+}
+.carousel-slide img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.45);
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 20px;
+    line-height: 1;
+    z-index: 5;
+}
+.carousel-btn:focus {
+    outline: 3px solid rgba(34,197,94,0.25);
+}
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
+
+@media (max-width: 768px) {
+    .carousel-slide img { height: 260px; }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide img { height: 180px; }
+    .carousel { margin-top: 1rem; }
+}

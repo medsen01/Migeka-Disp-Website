@@ -42,6 +42,18 @@
                         <a href="services.html" class="btn btn-primary">Our Services</a>
                         <a href="who-we-are.html" class="btn btn-secondary">Learn More</a>
                     </div>
+                    <!-- Carousel FOR Image scroll -->
+                    <div class="carousel" aria-roledescription="carousel" aria-label="Hero image carousel">
+                        <button class="carousel-btn prev" aria-label="Previous slide">&#10094;</button>
+                        <div class="carousel-track-container">
+                            <ul class="carousel-track">
+                                <li class="carousel-slide"><img src="hero1.jpg" alt="Clinic exterior"></li>
+                                <li class="carousel-slide"><img src="hero2.jpg" alt="Consultation room"></li>
+                                <li class="carousel-slide"><img src="hero3.jpg" alt="Staff at work"></li>
+                            </ul>
+                        </div>
+                        <button class="carousel-btn next" aria-label="Next slide">&#10095;</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -158,5 +170,33 @@
             </div>
         </div>
     </footer>
+        <script>
+        (function(){
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+            const prev = document.querySelector('.carousel-btn.prev');
+            const next = document.querySelector('.carousel-btn.next');
+            let index = 0;
+            function update() {
+                if (!track) return;
+                track.style.transform = `translateX(${ -index * 100 }%)`;
+            }
+            if (next) next.addEventListener('click', ()=>{ index = (index + 1) % slides.length; update(); });
+            if (prev) prev.addEventListener('click', ()=>{ index = (index - 1 + slides.length) % slides.length; update(); });
+            // keyboard support
+            document.addEventListener('keydown', (e)=>{
+                if (e.key === 'ArrowRight') { index = (index + 1) % slides.length; update(); }
+                if (e.key === 'ArrowLeft') { index = (index - 1 + slides.length) % slides.length; update(); }
+            });
+            // autoplay
+            let autoplay = setInterval(()=>{ index = (index + 1) % slides.length; update(); }, 4500);
+            // pause on hover/focus
+            const carousel = document.querySelector('.carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', ()=> clearInterval(autoplay));
+                carousel.addEventListener('mouseleave', ()=> autoplay = setInterval(()=>{ index = (index + 1) % slides.length; update(); }, 4500));
+            }
+        })();
+        </script>
 </body>
 </html>
